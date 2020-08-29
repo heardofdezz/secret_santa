@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :events
     end
   end
+  
   root to: "home#index"
-
   post "event", controller: :event, action: :create
 end
