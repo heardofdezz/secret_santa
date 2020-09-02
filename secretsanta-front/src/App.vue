@@ -1,13 +1,24 @@
 <template>
-  <div id="app">
+  <v-app>
+    <div id="app">
+      <Navbar/>
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Home</router-link>
+       <v-spacer> </v-spacer>
+      <router-link to="/about">Create your own event</router-link>
     </div>
     <router-view/>
   </div>
+  </v-app>
 </template>
-
+<script>
+export default {
+  Name: 'RootIndex',
+  components: {
+    Navbar: () => import('./components/Navbar')
+  }
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

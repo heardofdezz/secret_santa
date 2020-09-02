@@ -6,7 +6,11 @@ module Api
                 @event = Event.new(event_params)
         
                 if @event.save
-                    render json: @event, status: :created, location: @event
+
+                    # participants = 
+                    # emails =
+                    # mail = Mail.new do  
+                #    render json: @event, status: :created, location: @event
                 else
                     render json :@event.errors, status: :unprocessable_entity
                 end
