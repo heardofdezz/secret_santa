@@ -11,7 +11,7 @@ Vue.use(VueRouter)
     component: Home
   },
   {
-    path: '/about',
+    path: '/create',
     name: 'Create',
    component: Create
   }

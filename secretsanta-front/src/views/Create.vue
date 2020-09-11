@@ -1,10 +1,10 @@
 <template>
   <div class="create">
     <h1>My Secret Santa </h1>
-    <v-form
+  <v-form
     v-model="event"
     >
-  <v-container>
+    <v-container>
     <v-row>
 
         <v-col cols="12" sm="3">
@@ -61,29 +61,21 @@
             solo-inverted
           ></v-text-field>
         </v-col>
-      <v-form>
-        
-      </v-form>
-      
-        <v-col cols="12" sm="12">
-          <v-text-field
-            v-model="first"
-            label="First Name"
-            solo-inverted
+        <h2>{{participants.label}} </h2>
+
+        <v-col >
+          <v-text-field 
+          v-model="participants.users.name"
+          solo-inverted
+          label="Host Name"
           >
-          <v-col cols="12" sm="6">
-          <v-text-field
-            v-model="first"
-            label="First Name"
-            solo
+          </v-text-field>
+          <v-text-field 
+          v-model="participants.users.email"
+          solo-inverted
+          label="Email"
           ></v-text-field>
         </v-col>
-          
-          </v-text-field>
-        </v-col>
-
-
-
       </v-row>
     <v-checkbox
       v-model="checkbox"
@@ -93,9 +85,9 @@
       required
     ></v-checkbox>
   </v-container>
-
-
     </v-form>
+      <v-btn  depressed small color="red darken-4">Create your Event!</v-btn>
+
   </div>
 </template>
 
@@ -104,14 +96,50 @@
 export default {
   name: 'Create',
   data () {
-    return {
+    return { 
       date:'',
       host: '',
       location: '',
       amount: '',
-      participants: [],
-      message: ''
+      message: '',
+      participants: {
+        label: 'Participants Name & Email',
+        users: [
+          {name: '', email: ''},
+        ]
+      },
     }
+  },
+  // Created(){
+  //   this.checkCreated()
+  // },
+  methods: {
+    
+    created(){
+      this.$http.plain.post('/create', 
+      {date: this.date, host: this.host, location: this.location, amount: this.amount, message: this.message, participants: this.participants})
+      .then(response => this.createSuccessful(response)).catch(error => this.createFailed(error))
+    },
+    createSuccessful(response){
+        if(!response.data) {
+          this.createFailed(response)
+          return
+        }
+        this.$router.replace('/')
+    },
+    createFailed(error){
+      this.error = (error.response && error.response.data && error.response.data.error)
+    },
+    // checkCreated(){
+    //   if (data.) {
+    //     this.$router.replace('/')
+    //   }
+    // }
+    // addParticipants: function(){
+    // //  var element = document.createElement('')
+    //   var element = document.querySelector('v-col.participant')
+    //   element.classList.add(element)
+    // }
   }
 }
 </script>

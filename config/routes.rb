@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   end
   
   root to: "home#index"
-  post "event", controller: :event, action: :create
+  post "create", controller: :event, action: :create
 end

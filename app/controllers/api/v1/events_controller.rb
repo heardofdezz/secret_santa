@@ -2,11 +2,31 @@ module Api
     module V1
         class EventsController < ApplicationController
             # before_action :set_event, only [:show, :update, :destroy]
+
+            def newEvent
+                
+            end
+            
+
             def create
                 @event = Event.new(event_params)
-        
-                if @event.save
+                
+                ######## TO-DO #####
 
+                ## Parse incoming payload 
+               
+                ## Retrieve Users & Emails 
+            
+                ### Randomize Email 
+
+                ##### Associated each participants 
+
+                ### Move below to send email
+                if @event.save
+                    #### SEND EMAIL ATTACH HOST NAME TO IT
+                   
+                    ### INCLUDE Associated participants to name to the mail do a Loop.
+                      
                     # participants = 
                     # emails =
                     # mail = Mail.new do  

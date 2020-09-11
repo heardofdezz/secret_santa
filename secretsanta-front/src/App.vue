@@ -5,7 +5,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link>
        <v-spacer> </v-spacer>
-      <router-link to="/about">Create your own event</router-link>
+      <router-link to="/create">Create your own event</router-link>
     </div>
     <router-view/>
   </div>
